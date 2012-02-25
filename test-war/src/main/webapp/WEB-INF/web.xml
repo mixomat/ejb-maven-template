@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<web-app version="2.5"
+				 xmlns="http://java.sun.com/xml/ns/javaee"
+				 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+	<description>Test</description>
+	<display-name>Test</display-name>
+
+	<!-- =================================================================================================================
+		Generic JSF configuration.
+	================================================================================================================== -->
+	<!-- Faces Servlet -->
+	<servlet>
+		<servlet-name>Faces Servlet</servlet-name>
+		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<!-- Faces Servlet Mapping -->
+	<servlet-mapping>
+		<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>*.jsf</url-pattern>
+	</servlet-mapping>
+
+	<!-- Store Facelets in xhtml files -->
+	<context-param>
+		<param-name>javax.faces.DEFAULT_SUFFIX</param-name>
+		<param-value>.xhtml</param-value>
+	</context-param>
+
+	<!-- This configuration option removes all HTML comments that are present in the XHTML files, thus -->
+	<!-- making sure that no internal remarks end up in the rendered output. It also ensures that EL   -->
+	<!-- expressions inside comments aren't evaluated during page execution.                           -->
+	<context-param>
+		<param-name>facelets.SKIP_COMMENTS</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	
+	<context-param>
+		<param-name>facelets.RECREATE_VALUE_EXPRESSION_ON_BUILD_BEFORE_RESTORE</param-name>
+		<param-value>false</param-value>
+	</context-param>
+
+	<!-- Make sure that the facelets aren't served directly. -->
+	<security-constraint>
+		<display-name>Restrict direct access to XHTML files</display-name>
+		<web-resource-collection>
+			<web-resource-name>XHTML files</web-resource-name>
+			<url-pattern>*.xhtml</url-pattern>
+		</web-resource-collection>
+		<auth-constraint/>
+	</security-constraint>
+
+
+</web-app>

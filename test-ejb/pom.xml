@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+				 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<parent>
+		<artifactId>test</artifactId>
+		<groupId>org.example.ejb</groupId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.example.ejb</groupId>
+	<artifactId>test-ejb</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>ejb</packaging>
+	
+	<dependencies>
+		<!-- ======================================================================================= -->
+		<!-- Hibernate                                                                               -->
+		<!-- ======================================================================================= -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>3.3.2.GA</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-annotations</artifactId>
+			<version>3.4.0.GA</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>3.4.0.GA</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- ======================================================================================= -->
+		<!-- OpenEJB embedded EJB container                                                          -->
+		<!-- ======================================================================================= -->
+		<!--
+			OpenEJB is used for unit testing. It would probably be possible to test in-container, but
+			using an embedded container is much simpler. 
+		-->
+		<dependency>
+			<groupId>org.apache.openejb</groupId>
+			<artifactId>openejb-ejbd</artifactId>
+			<version>3.1.4</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- ======================================================================================= -->
+		<!-- Dependencies for logging and bridging to slf4j                                          -->
+		<!-- ======================================================================================= -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.6.1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.6.1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.16</version>
+			<scope>test</scope>
+		</dependency>
+
+
+		<!-- ======================================================================================= -->
+		<!-- JUnit - Unit Testing Support                                                            -->
+		<!-- ======================================================================================= -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.9</version>
+			<scope>test</scope>
+		</dependency>
+		
+		<!-- ======================================================================================= -->
+		<!-- Easy mocking with Mockito                                                                -->
+		<!-- ======================================================================================= -->
+		<dependency>
+			<groupId>org.mockito</groupId>
+  			<artifactId>mockito-all</artifactId>
+  			<version>1.8.5</version>
+  			<scope>test</scope>
+		</dependency>
+	</dependencies>
+	
+	<build>
+		<testResources>
+			<testResource>
+				<directory>src/test/resources</directory>
+				<filtering>true</filtering>
+			</testResource>
+		</testResources>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-ejb-plugin</artifactId>
+				<configuration>
+					<ejbVersion>3.0</ejbVersion>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+
+</project>
